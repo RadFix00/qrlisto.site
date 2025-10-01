@@ -1,1 +1,0 @@
-console.log("¡El proyecto Node.js ha iniciado correctamente!");
