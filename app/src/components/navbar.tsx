@@ -2,6 +2,7 @@
 
 import { headers } from 'next/headers';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import './navbar.css';
 
@@ -30,7 +31,12 @@ export default function Navbar() {
             <div className='content'>
                 {/* Logo */}
                 <div>
-                    <h1>IMAGEN</h1>
+                    <Image
+                        src='/images/LogoQrListo.png'
+                        alt='Logo Empresa w'
+                        width={100}
+                        height={100}
+                    />
                 </div>
 
 
