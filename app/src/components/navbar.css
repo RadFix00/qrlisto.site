@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.link {
+    font-size: 1.2em;
+    font-weight: 800;
+    color: black;
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+    display: flex;
+    gap: 27px;
+    align-items: center;
+}
