@@ -22,21 +22,33 @@ header{
     z-index: 1000;
 }
 
-ul{
+ul {
     list-style: none;
     display: flex;
     gap: 50px;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.247);
+    background-color: rgba(0, 0, 0, 0.041); 
+    backdrop-filter: blur(8px); 
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     border-radius: 18px;
     padding: 9px 30px;
 }
 
 .link {
-    font-size: 1.2em;
-    font-weight: 800;
-    color: black;
+    font-size: 1.1em;
+    font-weight: 400;
+    color: #000000; 
     text-decoration: none;
+}
+
+.button-to-action{
+    background-color: rgba(255, 0, 0, 0.199); 
+    backdrop-filter: blur(8px); 
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    border-radius: 18px;
+    padding: 9px 30px;
 }
 
 

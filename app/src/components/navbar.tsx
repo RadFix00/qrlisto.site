@@ -35,7 +35,7 @@ export default function Navbar() {
 
 
                 {/* Links */}
-                <div className='content-links' >
+                <div>
                     <div>
                         <nav>
                             <ul>
@@ -52,7 +52,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Botton To Action */}
-                <div>
+                <div className='button-to-action'>
                     <a href="">PRECIOS</a>
                 </div>
 
