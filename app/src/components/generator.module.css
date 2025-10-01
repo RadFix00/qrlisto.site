@@ -1,6 +1,37 @@
 .contentqr {
     position: relative;
+    width: 100%;
     height: 95vh;
-    background-color: blue;
+    backdrop-filter: blur(10px);
+    /*background: -webkit-linear-gradient(90deg, #f30000ff 0%, #690000ff 100%);*/
     z-index: 2;
+    border-top-left-radius: 5em;
+    border-top-right-radius: 5em;
 }
+
+.contentqr div{
+    padding-top: 10em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:1px;
+}
+
+.contentqr h3{
+    font-size: 1.7rem;
+    color: gray;
+}
+
+.contentqr h1{
+    font-size: 3.5rem;
+    color: black;
+}
+
+.contentqr h2{
+    font-size: 1.7rem;
+    color: gray;
+    max-width: 20em;
+    text-align: center;
+}
+
