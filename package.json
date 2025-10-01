@@ -1,9 +1,13 @@
 {
-  "name": "qrlisto.site-1",
+  "name": "qrlisto.site",
   "version": "1.0.0",
   "description": "```\r qrlisto.site-1\r ├─ backend\r │  ├─ app.js\r │  ├─ package-lock.json\r │  └─ package.json\r ├─ frontend\r └─ README.md",
   "main": "index.js",
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
