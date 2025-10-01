@@ -14,9 +14,9 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
     {label: 'Inicio', href: '/' },
-    {label: 'Generar QR', href: '/generar' },
-    {label: 'Precios', href: '/precios' },
-    {label: 'Contacto', href: '/contacto' },
+    {label: 'Generar QR', href: '#generar' },
+    {label: 'Precios', href: '#precios' },
+    {label: 'Contacto', href: '#contacto' },
 ];
 
 export default function Navbar() {
@@ -34,8 +34,8 @@ export default function Navbar() {
                     <Image
                         src='/images/LogoQrListo.png'
                         alt='Logo Empresa w'
-                        width={200}
-                        height={200}
+                        width={170}
+                        height={100}
                     />
                 </div>
 
@@ -59,7 +59,7 @@ export default function Navbar() {
 
                 {/* Botton To Action */}
                 <div className='button-to-action'>
-                    <a href="">PRECIOS</a>
+                    <a href="">QR PRO</a>
                 </div>
 
             </div>
