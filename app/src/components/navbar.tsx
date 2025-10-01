@@ -27,31 +27,34 @@ export default function Navbar() {
 
     return (
         <header>
-            {/* Logo */}
-            <div>
-            </div>
-
-
-            {/* Links */}
-            <div className='content-links' >
+            <div className='content'>
+                {/* Logo */}
                 <div>
-                    <nav>
-                        <ul>
-                            {navLinks.map((link) => (
-                                <li key={link.label}>
-                                    <Link  href={link.href} onClick={() => setIsMenuOpen(false)} className='link'>
-                                        {link.label}
-                                    </Link>
-                                </li>
-                            ))}
-                            
-                        </ul>
-                    </nav>
+                    <h1>IMAGEN</h1>
                 </div>
-            </div>
 
-            {/* Botton To Action */}
-            <div>
+
+                {/* Links */}
+                <div className='content-links' >
+                    <div>
+                        <nav>
+                            <ul>
+                                {navLinks.map((link) => (
+                                    <li key={link.label}>
+                                        <Link  href={link.href} onClick={() => setIsMenuOpen(false)} className='link'>
+                                            {link.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+
+                {/* Botton To Action */}
+                <div>
+                    <a href="">PRECIOS</a>
+                </div>
 
             </div>
         </header>
