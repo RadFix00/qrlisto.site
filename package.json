@@ -1,24 +1,12 @@
 {
   "name": "qrlisto.site-1",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "```\r qrlisto.site-1\r ├─ backend\r │  ├─ app.js\r │  ├─ package-lock.json\r │  └─ package.json\r ├─ frontend\r └─ README.md",
+  "main": "index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "node server.js",
-    "lint": "eslint"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "next": "15.5.4",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@types/node": "^24.6.1",
-    "@types/react": "^19.1.16",
-    "eslint": "^9",
-    "eslint-config-next": "15.5.4",
-    "typescript": "^5.9.3"
-  }
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
