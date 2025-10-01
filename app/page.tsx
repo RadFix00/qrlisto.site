@@ -13,8 +13,8 @@ export default function Home() {
           height={200}
         />
         <h1 className="texthero">Códigos QR al
-           instante, sin complicaciones: crea, compa
-           rte y conecta en segundos.
+           instante, sin complicaciones: crea, comparte 
+           y conecta en segundos.
         </h1>
 
          <form className="search-form">
