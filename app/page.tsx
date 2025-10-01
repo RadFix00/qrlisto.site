@@ -1,23 +1,37 @@
 import Image from "next/image";
-import Navbar from "./src/components/navbar";
-import './globals.css';
+import './page.css';
 
 export default function Home() {
   return (
+    <main>
+      {/* Section Hero */}
+      <div className="hero">
+        <Image
+          src="/images/LogoQrListo.png"
+          alt="Logo Empresa w"
+          width={200}
+          height={200}
+        />
+        <h1 className="texthero">Códigos QR al
+           instante, sin complicaciones: crea, compa
+           rte y conecta en segundos.
+        </h1>
 
-    <div>
+         <form className="search-form">
+          <input
+            type="text"
+            placeholder="Ingresa el sitio..."
+            className="search-input"
+            aria-label="Barra de búsqueda del sitio"
+          />
+         
+          <button type="submit" className="search-button" aria-label="Buscar">
+            🔍
+          </button>
+        </form>
 
-      <Navbar />
-      
-      <h1>Genera tu QR Free!</h1>
 
-      <div style={{ backgroundColor: "black", padding: "20px", marginTop: "20px" }}>
-        <button>
-          generar QR
-        </button>
-        
       </div>
-      
-    </div>
+    </main>
   );
 }

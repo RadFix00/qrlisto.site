@@ -34,8 +34,8 @@ export default function Navbar() {
                     <Image
                         src='/images/LogoQrListo.png'
                         alt='Logo Empresa w'
-                        width={100}
-                        height={100}
+                        width={200}
+                        height={200}
                     />
                 </div>
 
