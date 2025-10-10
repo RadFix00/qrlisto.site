@@ -4,7 +4,7 @@ import { headers } from 'next/headers';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import './navbar.css';
+import './styles/navbar.css';
 
 interface NavLink {
     label: string;

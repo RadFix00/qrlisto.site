@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import styles from './hero.module.css';
+import styles from './styles/hero.module.css';
 import ParticlesBackground from './backhero';
 import { motion } from 'framer-motion';
 
