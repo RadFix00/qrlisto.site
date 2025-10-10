@@ -34,8 +34,10 @@ export default function Hero() {
                             background: 'linear-gradient(90deg, #f30000ff 0%, #690000ff 100%)',
                             color: '#ffffffff', 
                             border: 'none', 
+                            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+                            
                         }}
-                    animate={{ scale: 1.4, transition: { duration: 0.5, ease: "easeInOut"} }}
+                    animate={{ scale: 1.4, transition: { duration: 0.4, ease: "easeInOut"} }}
                     whileHover={{ scale: 1.6 }}  // Cuando el mouse pasa por encima
                     >
                     GENERAR QR

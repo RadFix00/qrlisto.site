@@ -1,7 +1,11 @@
+/*
+ * ESTILOS CORREGIDOS (generator.module.css)
+ */
+
 .contentqr {
     position: relative;
     width: 100%;
-    height: 95vh;
+    height: auto;
     backdrop-filter: blur(10px);
     /*background: -webkit-linear-gradient(90deg, #f30000ff 0%, #690000ff 100%);*/
     z-index: 2;
@@ -9,29 +13,107 @@
     border-top-right-radius: 5em;
 }
 
+.qr {
+    padding: 7em 0em;
+}
+
 .contentqr div{
-    padding-top: 10em;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap:1px;
+    gap: 1em;
 }
 
-.contentqr h3{
+
+.contentqr h3 {
     font-size: 1.7rem;
     color: gray;
 }
 
-.contentqr h1{
+.contentqr h1 {
     font-size: 3.5rem;
     color: black;
 }
 
-.contentqr h2{
+.contentqr h2 {
     font-size: 1.7rem;
     color: gray;
     max-width: 20em;
     text-align: center;
 }
 
+.contentqr h4 {
+    font-size: 1.4rem;
+    color: black;
+}
+
+
+div .square {
+    display: flex;
+    flex-direction: row; /* Este selector es más específico que .contentqr div */
+    gap: 6em;
+    background: rgb(255, 255, 255);
+    margin: 2em;
+    padding: 3em 6em;
+    border-radius: 1em;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.671);
+}
+
+.qrimage div {
+    border: 10px solid red;
+}
+
+
+
+.contentqr .selectionContainer {
+    display: flex;
+    flex-direction: row; /* 💥 Gana la batalla: Pone los botones en fila */
+    flex-wrap: wrap;     /* Permite el salto de línea */
+    justify-content: center; /* Centra la fila de botones */
+    
+    gap: 1.3em;
+    margin-top: 10px;
+    
+    /* LÍMITE DE ANCHO PARA FORZAR LA FILA DE 3 O 4 BOTONES */
+    max-width: 380px; /* Ajusta este valor (ej: 500px para 4 elementos) */
+}
+
+.imageButton {
+    /* Mantenemos la alineación interna de cada botón como columna */
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    
+    /* Ancho fijo para calcular el max-width del contenedor */
+    width: 100px; 
+
+    padding: 10px;
+    border: 3px solid transparent; 
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #f8f9fa; 
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.imageButton p {
+    margin-top: 5px;
+    font-size: 0.85rem;
+    color: #333;
+}
+
+.selected {
+    border-color: #f30000ff; 
+    background-color: #ffe5e5; 
+    transform: scale(1.03);
+}
+
+.imageButton:hover:not(.selected) {
+    background-color: #eee;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.imageButton img {
+    object-fit: contain;
+}
