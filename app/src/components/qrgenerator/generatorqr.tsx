@@ -1,56 +1,64 @@
 'use client';
 
-import Image from "next/image";
+import { useState, useCallback } from 'react';
 import styles from '../styles/generator.module.css';
-import { motion } from 'framer-motion';
-import  {QrOptionSelect} from './QrOptionSelect';
-
-
+import { QrOptionSelect } from './QrOptionSelect';
+import { QrPreview } from './QrPreviewv';
+import { QrDescargar } from './QrDescargar';
+import { useAuth } from '@/app/lib/hooks/useAuth';
+import { formatQrValue } from '@/app/lib/utils/qr-formatter';
+import { QR_TYPES, QrType } from '@/app/lib/constants';
 
 export default function Generatorqr() {
+    const [selectedOption, setSelectedOption] = useState<QrType>(QR_TYPES.LINK);
+    const [inputValue, setInputValue] = useState('');
+    const [qrValue, setQrValue] = useState('');
+    const { isAuthenticated, isLoading } = useAuth(true);
+
+    const handleGenerate = useCallback(() => {
+        const formattedValue = formatQrValue(selectedOption, inputValue);
+        setQrValue(formattedValue);
+    }, [selectedOption, inputValue]);
+
+    if (isLoading) {
+        return (
+            <div className={styles.contentqr} id="generar">
+                <div className={styles.qr}>
+                    <p>Cargando...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (!isAuthenticated) {
+        return null;
+    }
 
     return (
-        <div className={styles.contentqr} id="generar" >
+        <div className={styles.contentqr} id="generar">
             <div className={styles.qr}>
                 <h2>Mas Facil Imposible</h2>
                 <h1>Generador de QR's</h1>
                 <div className={styles.square}>
-                    <div >
-                        <QrOptionSelect/>  
+                    <div>
+                        <QrOptionSelect
+                            selectedOption={selectedOption}
+                            onOptionChange={setSelectedOption}
+                            inputValue={inputValue}
+                            onInputChange={setInputValue}
+                            onGenerate={handleGenerate}
+                        />
                     </div>
 
                     <div className="qrimage">
-                        <h2>Codigo QR</h2>
-                        <div>
-                            <Image
-                                src="/images/qrfondo.png"
-                                alt="Logo Empresa w"
-                                width={250}
-                                height={250}
-                            />
+                        <h2>Código QR</h2>
+                        <div className={styles.qrImageContainer}>
+                            <QrPreview qrValue={qrValue} qrType={selectedOption} />
                         </div>
-                        <motion.button
-                    
-                            style={{ padding: '9px 30px;', 
-                                    borderRadius: '18px', 
-                                    cursor: 'pointer', 
-                                    marginTop: '1em', 
-                                    background: 'linear-gradient(90deg, #f30000ff 0%, #690000ff 100%)',
-                                    color: '#ffffffff', 
-                                    border: 'none', 
-                                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
-                                    
-                                }}
-                            animate={{ scale: 1.4, transition: { duration: 0.4, ease: "easeInOut"} }}
-                            whileHover={{ scale: 1.6 }}  // Cuando el mouse pasa por encima
-                            >
-                            Descargar
-                        </motion.button>
+                        <QrDescargar qrValue={qrValue} disabled={!qrValue} />
                     </div>
-
                 </div>
-                
             </div>
-        </div>  
-    )
+        </div>
+    );
 }

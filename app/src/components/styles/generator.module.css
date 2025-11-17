@@ -117,3 +117,67 @@ div .square {
 .imageButton img {
     object-fit: contain;
 }
+
+.inputContainer {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.inputContainer label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.qrInput {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+    width: 100%;
+}
+
+.qrInput:focus {
+    border-color: #f30000;
+    box-shadow: 0 0 0 3px rgba(243, 0, 0, 0.1);
+}
+
+.qrImageContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    min-height: 290px;
+    min-width: 290px;
+}
+
+.qrPlaceholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+    min-width: 250px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 2px dashed #ddd;
+    padding: 2rem;
+    text-align: center;
+    color: #666;
+}
+
+.qrPreviewContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background: white;
+    border-radius: 10px;
+}

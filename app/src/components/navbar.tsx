@@ -1,9 +1,9 @@
 'use client';
 
-import { headers } from 'next/headers';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useAuth } from '@/app/lib/hooks/useAuth';
+import { ROUTES } from '@/app/lib/constants';
 import './styles/navbar.css';
 
 interface NavLink {
@@ -13,30 +13,28 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-    {label: 'Inicio', href: '/' },
-    {label: 'Generar QR', href: '#generar' },
-    {label: 'Precios', href: '#precios' },
-    {label: 'Contacto', href: '#contacto' },
+    { label: 'Inicio', href: ROUTES.HOME },
+    { label: 'Generar QR', href: ROUTES.GENERATOR },
+    { label: 'Precios', href: '#precios' },
+    { label: 'Contacto', href: '#contacto' },
 ];
 
 export default function Navbar() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+    const { isAuthenticated, isLoading, logout } = useAuth();
 
     return (
         <header>
             <div className='content'>
                 {/* Logo */}
                 <div>
-                    <Image
-                        src='/images/LogoQrListo.png'
-                        alt='Logo Empresa w'
-                        width={170}
-                        height={100}
-                    />
+                    <Link href="/">
+                        <Image
+                            src='/images/LogoQrListo.png'
+                            alt='Logo Empresa w'
+                            width={170}
+                            height={100}
+                        />
+                    </Link>
                 </div>
 
 
@@ -47,7 +45,7 @@ export default function Navbar() {
                             <ul>
                                 {navLinks.map((link) => (
                                     <li key={link.label}>
-                                        <Link  href={link.href} onClick={() => setIsMenuOpen(false)} className='link'>
+                                        <Link href={link.href} className='link'>
                                             {link.label}
                                         </Link>
                                     </li>
@@ -57,9 +55,28 @@ export default function Navbar() {
                     </div>
                 </div>
 
-                {/* Botton To Action */}
+                {/* Botones de acción */}
                 <div className='button-to-action'>
-                    <a href="">QR PRO</a>
+                    {isLoading ? (
+                        <span>Cargando...</span>
+                    ) : isAuthenticated ? (
+                        <>
+                            <Link href={ROUTES.GENERATOR} className="nav-button">
+                                Generar QR
+                            </Link>
+                            <button 
+                                onClick={logout} 
+                                className="nav-button logout-button"
+                                aria-label="Cerrar sesión"
+                            >
+                                Cerrar Sesión
+                            </button>
+                        </>
+                    ) : (
+                        <Link href={ROUTES.LOGIN} className="nav-button">
+                            Iniciar Sesión
+                        </Link>
+                    )}
                 </div>
 
             </div>

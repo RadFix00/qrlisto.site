@@ -1,28 +1,18 @@
-// src/components/qr-generator/QrOptionSelect.tsx
-
 'use client';
 
-import React, { useState } from "react";
 import styles from '../styles/generator.module.css';
 import { motion } from 'framer-motion';
-import Image from "next/image";
+import Image from 'next/image';
+import { QrOption } from '@/app/lib/types';
+import { QR_OPTIONS, QrType } from '@/app/lib/constants';
+import { getQrPlaceholder, getQrInputLabel } from '@/app/lib/utils/qr-formatter';
 
-// 1. Interfaz base para las opciones
-interface QrOption {
-    id: string;
-    label: string;
-    iconPath: string;
-    alt: string;
-}
-
-// 2. Interfaz para las props del botón
 interface ImageButtonProps {
     option: QrOption;
     isSelected: boolean;
-    onSelect: (optionId: string) => void;
+    onSelect: (optionId: QrType) => void;
 }
 
-// 3. Componente ImageButton (tipado correctamente)
 function ImageButton({ option, isSelected, onSelect }: ImageButtonProps) {
     return (
         <motion.div
@@ -30,6 +20,15 @@ function ImageButton({ option, isSelected, onSelect }: ImageButtonProps) {
             onClick={() => onSelect(option.id)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            role="button"
+            tabIndex={0}
+            aria-pressed={isSelected}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onSelect(option.id);
+                }
+            }}
         >
             <Image
                 src={option.iconPath}
@@ -42,65 +41,79 @@ function ImageButton({ option, isSelected, onSelect }: ImageButtonProps) {
     );
 }
 
-// 4. Datos de las opciones
-const qrOptions: QrOption[] = [
-    { id: 'link', label: 'Enlace', iconPath: '/images/qrfondo.png', alt: 'Icono Enlace' },
-    { id: 'text', label: 'Texto', iconPath: '/images/qrfondo.png', alt: 'Icono Texto' },
-    { id: 'email', label: 'Email', iconPath: '/images/qrfondo.png', alt: 'Icono Email' },
-    { id: 'phone', label: 'Teléfono', iconPath: '/images/qrfondo.png', alt: 'Icono Teléfono' },
-    { id: 'sms', label: 'SMS', iconPath: '/images/qrfondo.png', alt: 'Icono SMS' },
-    { id: 'wifi', label: 'WiFi', iconPath: '/images/qrfondo.png', alt: 'Icono WiFi' },
-    { id: 'location', label: 'Ubicación', iconPath: '/images/qrfondo.png', alt: 'Icono Ubicación' },
-    { id: 'event', label: 'Evento', iconPath: '/images/qrfondo.png', alt: 'Icono Evento' },
-    { id: 'contact', label: 'Contacto', iconPath: '/images/qrfondo.png', alt: 'Icono Contacto' },
-];
+interface QrOptionSelectProps {
+    selectedOption: QrType;
+    onOptionChange: (optionId: QrType) => void;
+    inputValue: string;
+    onInputChange: (value: string) => void;
+    onGenerate: () => void;
+}
 
-
-// 5. Componente Principal QrOptionSelect (Ahora SIN PROPS)
-// Ya que maneja su propio estado, eliminamos las props conflictivas.
-export function QrOptionSelect() {
-
-    const [selectedOption, setSelectedOption] = useState(qrOptions[0].id); // Estado interno
-
-    const handleSelectOption = (optionId: string) => {
-        setSelectedOption(optionId);
-        console.log("Opción QR seleccionada:", optionId);
-    };
+export function QrOptionSelect({ 
+    selectedOption, 
+    onOptionChange, 
+    inputValue, 
+    onInputChange,
+    onGenerate 
+}: QrOptionSelectProps) {
+    const isInputValid = inputValue.trim().length > 0;
     
     return (
         <div>
             <h4>Selecciona qué va a contener tu QR</h4>
 
             <div>
-                <div className={styles.selectionContainer} >
-                    {qrOptions.map((option) => (
+                <div className={styles.selectionContainer} role="radiogroup" aria-label="Tipo de código QR">
+                    {QR_OPTIONS.map((option) => (
                         <ImageButton
                             key={option.id}
                             option={option}
                             isSelected={selectedOption === option.id}
-                            onSelect={handleSelectOption}
+                            onSelect={onOptionChange}
                         />
                     ))}
                 </div>
             </div>
 
+            <div className={styles.inputContainer}>
+                <label htmlFor="qr-input">{getQrInputLabel(selectedOption)}</label>
+                <input
+                    id="qr-input"
+                    type="text"
+                    value={inputValue}
+                    onChange={(e) => onInputChange(e.target.value)}
+                    placeholder={getQrPlaceholder(selectedOption)}
+                    className={styles.qrInput}
+                    aria-required="true"
+                    aria-invalid={!isInputValid}
+                />
+            </div>
+
             <motion.button
-                // 🟢 Importante: Corregidas las propiedades de estilo con comas (,) en lugar de punto y coma (;)
+                onClick={onGenerate}
+                disabled={!isInputValid}
+                aria-disabled={!isInputValid}
                 style={{ 
                     padding: '9px 30px', 
                     borderRadius: '18px', 
-                    cursor: 'pointer', 
+                    cursor: isInputValid ? 'pointer' : 'not-allowed',
                     marginTop: '1em', 
-                    background: 'linear-gradient(90deg, #f30000ff 0%, #690000ff 100%)',
+                    background: isInputValid
+                        ? 'linear-gradient(90deg, #f30000ff 0%, #690000ff 100%)'
+                        : '#cccccc',
                     color: '#ffffffff', 
                     border: 'none', 
-                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    opacity: isInputValid ? 1 : 0.6
                 }}
-                animate={{ scale: 1.1, transition: { duration: 0.4, ease: "easeInOut"} }}
-                whileHover={{ scale: 1.15 }}
+                animate={{ 
+                    scale: isInputValid ? 1.1 : 1, 
+                    transition: { duration: 0.4, ease: "easeInOut" } 
+                }}
+                whileHover={isInputValid ? { scale: 1.15 } : {}}
             >
-                Seleccionar
+                Generar QR
             </motion.button>
         </div>
-    )
+    );
 }

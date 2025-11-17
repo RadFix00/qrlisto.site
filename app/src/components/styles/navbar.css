@@ -13,12 +13,16 @@ header{
     top: 0;
     left: 0;
     z-index: 1000;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    height: 100px;
 }
 
 .content{
     align-items: center;
     width: 80%;
-    height: 100px;
+    height: 100%;
     display: flex;
     justify-content: space-between;
     padding: 0 50px;
@@ -45,12 +49,40 @@ ul {
 }
 
 .button-to-action{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.nav-button {
     background-color: rgba(255, 0, 0, 0.199); 
     backdrop-filter: blur(2px); 
     border: 1px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     border-radius: 18px;
     padding: 9px 30px;
+    text-decoration: none;
+    color: #000000;
+    font-size: 1.1em;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: rgba(255, 0, 0, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.logout-button {
+    background: linear-gradient(90deg, #f30000ff 0%, #690000ff 100%);
+    color: #ffffff !important;
+    border: none;
+}
+
+.logout-button:hover {
+    background: linear-gradient(90deg, #ff3333 0%, #8b0000 100%);
 }
 
 
